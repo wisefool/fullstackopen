@@ -12,20 +12,28 @@ const App = (props) => {
     setVotes(votesCopy)
   }
   
-  const count = props.anecdotes.length
   const setRandom = (limit) => ( Math.floor(Math.random() * limit) )
+
+  const winner = allVotes.indexOf(Math.max(...allVotes))
 
   return (
     <div>
       <div>
-        {props.anecdotes[selected]}<br />
-        This anecdote has { allVotes[selected] } votes
+        <h1>Anecdote of the day</h1>
+        <p>{props.anecdotes[selected]}<br />
+          This anecdote has { allVotes[selected] } votes
+        </p>
       </div>
       <div>
-        <button onClick={() => setSelected(setRandom(count))}>Next anecdote</button>
+        <button onClick={() => setSelected(setRandom(props.anecdotes.length))}>Next anecdote</button>
          
         <button onClick={() => handleVote(selected)}>Vote</button>
       </div>
+      <div>
+        <h2>Anecdote with the most votes</h2>
+        {anecdotes[winner]}
+      </div>
+
     </div>
   )
 }
